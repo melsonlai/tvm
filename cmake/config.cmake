@@ -269,3 +269,7 @@ set(USE_HEXAGON_SDK /path/to/sdk)
 
 # Whether to use ONNX codegen
 set(USE_TARGET_ONNX OFF)
+
+# Whether to compile with Android NNAPI
+set(USE_ANDROID_NNAPI OFF)
+

@@ -301,7 +301,7 @@ class CodegenCBase {
         continue;
       }
       this->PrintIndents();
-      code_stream_ << "memcpy(out" << i << ", " << outs[i].name << ", 4 * " << outs[i].size
+      code_stream_ << "memcpy(out" << i << ", " << outs[i].name << ", sizeof(" << outs[i].dtype << ") * " << outs[i].size
                    << ");\n";
     }
 
@@ -347,6 +347,8 @@ class CodegenCBase {
       dtype = "int";
     } else if (runtime::TypeMatch(ttype->dtype, kDLInt, 64)) {
       dtype = "int64_t";
+    } else if (runtime::TypeMatch(ttype->dtype, kDLFloat, 16)) {
+      dtype = "uint16_t";
     } else {
       LOG(FATAL) << "Unsupported dtype " << ttype->dtype;
     }
